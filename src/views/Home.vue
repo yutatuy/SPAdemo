@@ -248,15 +248,15 @@ export default {
     }
   }
   &:nth-child(1):after {
-    background: url("./../../static/images/impression.jpg") center center/cover
+    background: url("./../../static/images/item01.jpg") center center/cover
       no-repeat;
   }
   &:nth-child(2):after {
-    background: url("./../../static/images/member.jpg") center center/cover
+    background: url("./../../static/images/item02.jpg") center center/cover
       no-repeat;
   }
   &:nth-child(3):after {
-    background: url("./../../static/images/schedule.jpg") center center/cover
+    background: url("./../../static/images/item03.jpg") center center/cover
       no-repeat;
   }
 }
@@ -271,7 +271,7 @@ export default {
   width: 100vw;
   height: 600px;
   position: relative;
-  background: url("../../static/images/theme-fv.jpg") center center/cover
+  background: url("../../static/images/page02-fv.jpg") center center/cover
     no-repeat;
   @include mq(u-sp) {
     height: auto;
