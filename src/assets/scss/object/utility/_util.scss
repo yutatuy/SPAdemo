@@ -1,0 +1,198 @@
+//hidden
+.u-hidden { display: none !important; }
+.u-hidden-sp {
+  @include mq(u-sp) {
+    display: none !important;
+  }
+}
+.u-hidden-pc {
+  @include mq(o-sp) {
+    display: none !important;
+  }
+}
+//fade
+.u-fadeUp-30{
+  position: relative;
+  top: 30px;
+  opacity: 0;
+  transition: all .1s;
+  transition-delay: .35s;
+}
+.u-fadeUp-50{
+  position: relative;
+  top: 50px;
+  opacity: 0;
+  transition: all .1s;
+  transition-delay: .35s;
+}
+.u-fadeUp-100{
+  position: relative;
+  top: 100px;
+  opacity: 0;
+  transition: all .1s;
+  transition-delay: .35s;
+}
+.u-fadeIn{
+  position: relative;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition-property: all;
+}
+.u-linear{
+  transition-timing-function: linear;
+}
+.u-easeOut{
+  transition-timing-function: cubic-bezier(.15,.58,0,1);
+}
+.u-dr-500{
+  transition-duration: .5s
+}
+.u-dr-1000{
+  transition-duration: 1s
+}
+.u-dr-1500{
+  transition-duration: 1.5s
+}
+.u-dr-5000{
+  transition-duration: 5s
+}
+.u-dl-500{
+  transition-delay: .5s
+}
+//active
+
+.u-tabActive{
+  background-color: $colorDark;
+  color: #fff;
+}
+.u-scrollStop {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+.u-catActive {
+  color: #fff;
+  @include mq(o-sp) {
+    >a:after{
+      left: 0 !important;
+    }
+  }
+  @include mq(u-sp) {
+    background-color: rgba($colorNormal, 0.7);
+  }
+}
+
+.u-menuColorChange{
+  color: #fff !important;
+  transition: color .5s;
+}
+//flex
+.u-flex--pc {
+  @include mq(o-sp) {
+    display: flex;
+  }
+}
+.u-flex {
+  display: flex;
+}
+//text
+.u-ff-gt{
+  font-family: $fontGothic;
+}
+.u-ff-mc{
+  font-family: $fontMincho;
+}
+.u-fs-14{
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+.u-fs-18{
+  font-size: 18px;
+  letter-spacing: 0.08em;
+}
+.u-fs-24{
+  font-size: 24px;
+  letter-spacing: 0.08em;
+}
+.u-fs-16-14{
+  font-size: 16px;
+  @include mq(u-sp) {
+    font-size: 14px;
+  }
+}
+.u-fs-24-14{
+  font-size: 24px;
+  @include mq(u-sp) {
+    font-size: 14px;
+  }
+}
+.u-fs-24-18{
+  @extend .u-ff-mc;
+  font-size: 24px;
+  @include mq(u-sp) {
+    font-size: 18px;
+  }
+}
+
+.u-fs-30-22{
+  @extend .u-ff-mc;
+  font-size: 30px;
+  font-weight: 300;
+  @include mq(u-sp) {
+    font-size: 22px;
+  }
+}
+.u-fs-40-26{
+  @extend .u-ff-mc;
+  font-size: 40px;
+  font-weight: 300;
+  @include mq(u-sp) {
+    font-size: 26px;
+  }
+}
+.u-fs-46-29{
+  @extend .u-ff-mc;
+  font-size: 46px;
+  font-weight: 300;
+  line-height: 1.4;
+  @include mq(u-sp) {
+    font-size: 29px;
+  }
+}
+
+//padding,margin
+.u-pt-50{
+  padding-top: 50px;
+}
+.u-pt-80{
+  padding-top: 80px;
+  @include mq(u-sp) {
+    padding-top: 35px;
+  }
+}
+
+.u-pr-50{padding-right: 50px;}
+.u-pb-50{padding-bottom: 50px;}
+.u-mb-10{margin-bottom: 10px;}
+.u-mb-30{margin-bottom: 30px;}
+.u-mb-50{margin-bottom: 50px;}
+.u-mb-80{margin-bottom: 80px;}
+.u-mb-150-100{
+  margin-bottom: 150px;
+  @include mq(u-sp) {
+    margin-bottom: 100px;
+  }
+}
+
+.u-mb-20{margin-bottom: 20px;}
+.u-mb-30{margin-bottom: 30px;}
+.u-mb-5-sp { @include mq(u-sp) { margin-bottom: 5px}}
+.u-mb-30-sp { @include mq(u-sp) { margin-bottom: 30px}}
+.u-mb-50-sp{ @include mq(u-sp) { margin-bottom: 50px}}
+
+//underbaer
+.u-underbar {
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba($colorLight, .7);
+}

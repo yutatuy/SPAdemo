@@ -1,0 +1,52 @@
+.c-moreBtn {
+  display: inline-block;
+  position: relative;
+  padding: 0.25em 1em;
+  border-top: solid 1px $colorNormal;
+  border-bottom: solid 1px $colorNormal;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #fff;
+  transition: .2s;
+}
+.c-moreBtn:before, .c-moreBtn:after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  width: 1px;
+  height: -webkit-calc(100% + 14px);
+  height: calc(100% + 14px);
+  background-color: $colorNormal;
+  transition: .2s;
+}
+
+
+.c-moreBtn:before {
+  left: 10px;
+}
+.c-moreBtn:after {
+  right: 10px;
+}
+.c-moreBtn:hover{
+  border-top: solid 1px $colorNormal;
+  border-bottom: solid 1px $colorNormal;
+  background-color: $colorLight;
+  color: #fff;
+  transition: .2s;
+}
+.c-moreBtn:hover:before,.c-moreBtn:hover:after {
+  width: 1px;
+}
+
+.c-moreBtn:hover:before {
+  top: 0px;
+  left:0;
+  height: 100%;
+}
+.c-moreBtn:hover:after {
+  top: 0px;
+  right: 0;
+  height: 100%;
+}
+

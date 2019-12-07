@@ -1,0 +1,92 @@
+//page__mv
+.c-page__mv {
+  position: relative;
+  height: 300px;
+  @include mq(u-sp) {
+    height: 200px;
+  }
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: " ";
+    display: block;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+.c-mvTxt {
+  position: absolute;
+  text-align: center;
+  top: 35%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #fff;
+  z-index: 5;
+  line-height: 1.5;
+}
+//page__ttl
+.c-pageTxt {
+  position: relative;
+  background-color: #fff;
+  text-align: center;
+  padding: 80px 50px;
+  @include mq(u-sp) {
+    padding: 35px 0 0 0;
+    box-shadow: none;
+  }
+  > h1 {
+    margin-bottom: 5px;
+  }
+}
+//page__content
+.c-pageList li {
+  cursor: pointer;
+}
+.c-pageListItem:nth-child(2n-1) .c-pageListItem__txt {
+  order: 1;
+}
+.c-pageListItem__img {
+  width: 50%;
+  @include mq(u-sp) {
+    width: 100%;
+    height: 250px;
+  }
+}
+.c-pageListItem__txt {
+  width: 50%;
+  padding: 50px 5.08475%;
+  @include mq(u-sp) {
+    width: 100%;
+    padding: 30px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    &:first-child {
+      border-top: 1px solid #ccc;
+    }
+  }
+}
+.p-itemRight {
+  align-items: center;
+  > p {
+    padding-top: 5px;
+    @include mq(o-sp) {
+      margin-left: 20px;
+    }
+  }
+  > h2 {
+    @include mq(u-sp) {
+      line-height: 1;
+    }
+  }
+}
+.c-pageList__link {
+  color: #ccc;
+}
+
+.p-page01Child .p-page01Con h1 + p{
+  margin-bottom: 40px;
+}

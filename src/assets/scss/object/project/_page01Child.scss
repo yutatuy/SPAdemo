@@ -1,0 +1,43 @@
+.p-page01Child .p-page01Con h1{
+  @extend .u-fs-40-26;
+  margin-bottom: 20px;
+  border-bottom: 3px solid $colorNormal;
+}
+.p-page01Child .p-page01Con h2{
+  @extend .u-fs-24-18;
+    margin-bottom: 30px;
+  border-bottom: 1px solid $colorNormal;
+  >span{
+    @extend .u-fs-16-14;
+  }
+}
+.p-page01Child .p-page01Con p{
+  margin-bottom: 20px;
+}
+.p-page01Child .p-page01Con .p-imgLeft{
+  margin-bottom: 30px;
+  @include mq(o-sp){
+    >img{
+      width: 50%;
+      margin-right: 20px;
+    }
+  }
+}
+.p-page01Child .p-page01Con .p-imgRight{
+  margin-bottom: 30px;
+  @include mq(o-sp){
+    >img{
+      width: 50%;
+      margin-left: 20px;
+    }
+  }
+}
+.p-page01Child .p-page01Con a{
+  color: $colorNormal;
+  border-bottom: 1px solid $colorNormal;
+  transition: color .3s ease-out;
+}
+.p-page01Child .p-page01Con a:hover{
+  color: $colorLight;
+  transition: color .3s ease-out;
+}

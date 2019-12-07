@@ -1,0 +1,14 @@
+.l-main__inner{
+  max-width: 1090px;
+  margin: 0 auto;
+  @include mq(sp-pc){
+    padding: 0 20px;
+  }
+  @include mq(u-sp){
+    padding: 0 20px;
+  }
+}
+
+.l-main{
+  padding: 0 0 150px 0;
+}

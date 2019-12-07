@@ -1,0 +1,12 @@
+.p-newsDetailContent p{
+  margin-bottom: 10px;
+}
+.p-newsDetailContent a{
+  color: $colorNormal;
+  border-bottom: 1px solid $colorNormal;
+  transition: color .3s ease-out;
+}
+.p-newsDetailContent a:hover{
+  color: $colorLight;
+  transition: color .3s ease-out;
+}
