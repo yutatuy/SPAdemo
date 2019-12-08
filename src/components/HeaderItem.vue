@@ -14,10 +14,10 @@
               <a>home</a>
             </router-link>
             <router-link class="u-fs-14" tag="li" to="/page01">
-              <a>page01</a>
+              <a>page1</a>
             </router-link>
             <router-link class="u-fs-14" tag="li" to="/page02">
-              <a>page02</a>
+              <a>page2</a>
             </router-link>
             <router-link class="u-fs-14" tag="li" to="/news">
               <a>news</a>
@@ -38,10 +38,10 @@
               <router-link class="u-fs-14" to="/" @click.native="slideMenu">home</router-link>
             </li>
             <li>
-              <router-link class="u-fs-14" to="/page01" @click.native="slideMenu">page01</router-link>
+              <router-link class="u-fs-14" to="/page01" @click.native="slideMenu">page1</router-link>
             </li>
             <li>
-              <router-link class="u-fs-14" to="/page02" @click.native="slideMenu">page02</router-link>
+              <router-link class="u-fs-14" to="/page02" @click.native="slideMenu">page2</router-link>
             </li>
             <li>
               <router-link class="u-fs-14" to="/news" @click.native="slideMenu">news</router-link>

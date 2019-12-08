@@ -78,7 +78,7 @@ export default {
   },
   data() {
     const list = NewsList.fetch();
-    const perPage = 5;
+    const perPage = 3;
     const maxImg = 8;
     return {
       list,

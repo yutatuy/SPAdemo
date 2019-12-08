@@ -61,7 +61,9 @@
   transition-delay: .5s
 }
 //active
-
+.u-curPage{
+  background-color: $colorDark !important;
+}
 .u-tabActive{
   background-color: $colorDark;
   color: #fff;
@@ -82,7 +84,34 @@
     background-color: rgba($colorNormal, 0.7);
   }
 }
-
+.u-before {
+  position: relative;
+  margin-left: 50px !important;
+  &:before {
+    position: absolute;
+    content: "...";
+    display: block;
+    top: 0;
+    left: -40px;
+    width: 20px;
+    height: 20px;
+    color: $colorDark;
+  }
+}
+.u-after {
+  position: relative;
+  margin-right: 50px !important;
+  &:after {
+    position: absolute;
+    content: "...";
+    display: block;
+    top: 0;
+    right: -35px;
+    width: 20px;
+    height: 20px;
+    color: $colorDark;
+  }
+}
 .u-menuColorChange{
   color: #fff !important;
   transition: color .5s;

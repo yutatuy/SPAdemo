@@ -1,14 +1,14 @@
 <template>
-  <div class="p-pagination">
-    <a v-if="currentPage != 1" class="prev" v-on:click="onPrev()">
-      <span>&lt;</span>&lt; 前へ
-    </a>
-    <div class="total">ページ {{currentPage}}/{{totalPage}}</div>
-    <a class="next" v-if="currentPage != totalPage" v-on:click="onNext()">
-      次へ &gt;
-      <span>&gt;</span>
-    </a>
-  </div>
+  <ul class="p-pagination">
+    <li
+      v-for="n of totalPage"
+      :key="n"
+      v-bind:class="{'u-curPage': n === currentPage, 'u-before': (n === isBefore) && (showRange < isBefore),'u-after': (n === isAfter) && ((totalPage - showRange) >= isAfter)}"
+      v-show="showList[n]"
+    >
+      <a @click="paging(n)">{{n}}</a>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -16,7 +16,11 @@ export default {
   name: "PrevNext",
   data() {
     return {
-      currentPage: this.page
+      currentPage: this.page,
+      showList: [],
+      showRange: 2,
+      isBefore: "0",
+      isAfter: "0"
     };
   },
   props: {
@@ -29,28 +33,40 @@ export default {
       required: true
     }
   },
-  computed: {
-    prevPage() {
-      return Math.max(this.currentPage - 1, 1);
-    },
-    nextPage() {
-      return Math.min(this.currentPage + 1, this.totalPage);
-    }
-  },
+  computed: {},
   methods: {
-    onPrev() {
-      scrollTo(0, 0);
-      this.currentPage = this.prevPage;
-      this.$emit("change", this.currentPage);
-    },
-    onNext() {
-      scrollTo(0, 0);
-      this.currentPage = this.nextPage;
-      this.$emit("change", this.currentPage);
-    },
     catChange() {
+      scrollTo(0, 0);
       this.currentPage = 1;
     },
+    paging(i) {
+      scrollTo(0, 0);
+      this.currentPage = i;
+      this.$emit("change", this.currentPage);
+      this.showNumber(i);
+    },
+    showNumber(cur) {
+      this.hiddenNumber();
+      for (let i = 0; i < this.totalPage + 1; i++) {
+        if (
+          i === 1 ||
+          i === this.totalPage ||
+          Math.abs(i - cur) <= this.showRange
+        ) {
+          this.showList.splice(i, 1, true);
+        }
+      }
+      this.isBefore = cur - this.showRange;
+      this.isAfter = cur + this.showRange;
+    },
+    hiddenNumber() {
+      for (let i = 0; i < this.totalPage + 1; i++) {
+        this.showList.splice(i, 1, false);
+      }
+    }
+  },
+  mounted() {
+    this.showNumber(1);
   }
 };
 </script>
@@ -61,21 +77,22 @@ export default {
 .p-pagination {
   text-align: center;
 }
-.p-pagination * {
-  display: inline;
-}
-a {
+.p-pagination li {
   cursor: pointer;
-  border: 0;
-  background: none;
-  font-size: initial;
-  margin: 0 1rem;
-  > span {
-    color: $colorNormal;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+  background-color: $colorLight;
+  color: #fff;
+  &:not(:last-child) {
+    margin-right: 10px;
   }
 }
-.next span {
-  position: relative;
-  left: -5px;
+.p-pagination li a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 </style>
