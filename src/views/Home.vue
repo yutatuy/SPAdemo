@@ -2,7 +2,7 @@
   <!-- p-home -->
   <div class="p-home">
     <div class="p-home__mv">
-      <video id="js-video-pc" class="p-home__video" autoplay muted playsinline loop>
+      <video id="js-video" class="p-home__video" autoplay muted playsinline loop>
         <source src="./../../static/video/video.mp4" type="video/mp4" />
       </video>
     </div>
@@ -195,7 +195,7 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100vw;
-  @media (max-width: 1540px) {
+  @media (max-width: 1460px) {
     width: auto;
     height: 100%;
   }

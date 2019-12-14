@@ -67,7 +67,7 @@ export default {
       //ロゴを表示
       setTimeout(this.LoadingContentStart, 900);
       //ローディング終了
-      setTimeout(this.LoadingFinish, 3200);
+      setTimeout(this.LoadingFinish, 3000);
     });
   }
 };
