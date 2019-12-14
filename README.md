@@ -1,21 +1,30 @@
-# first
+# 名前
+SPAdemo
 
-> A Vue.js project
+# 概要
+ビューのサンプルサイトです。
 
-## Build Setup
-
+## 使い方
 ``` bash
 # install dependencies
 npm install
-
 # serve with hot reload at localhost:8080
 npm run dev
-
 # build for production with minification
 npm run build
-
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Vueを使用した機能
+### Homeページ
+カテゴリー切り替え
+フェードインメニュー(SP)
+
+### Newsページ
+カテゴリー切り替え
+ページネーション
+モーダル
+
+## Author
+Yuta Ichinose

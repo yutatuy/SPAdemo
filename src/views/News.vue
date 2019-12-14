@@ -1,4 +1,5 @@
 <template>
+  <!-- p-news -->
   <div class="p-news c-page u-pt-50">
     <div class="l-main__inner">
       <div class="p-news__content u-flex--pc">
@@ -27,9 +28,10 @@
             </ul>
           </div>
         </div>
-
+        <!-- p-newsCon -->
         <div class="p-newsCon">
           <ul class="p-newsConList">
+            <!-- ニュースを記事のループ -->
             <li v-for="(item, i) in this.filterList" :key="i" class="u-mb-50">
               <div class="p-newsDetail">
                 <div class="p-newsDetailTop u-fs-18"></div>
@@ -41,24 +43,27 @@
                 <div class="p-newsDetailContent">
                   <div class="u-mb-10" v-html="item.content">{{item.content}}</div>
                   <ul class="p-modalList u-flex">
+                    <!-- 記事の画像ループ -->
                     <li v-for="(images, j) in item.image" :key="j" class="p-modalList__item">
                       <figure class="p-modalList__img" @click="openModal(i,j)">
                         <img v-bind:src="require('../../static/images/news/' + images.img)" />
                       </figure>
-                      <transition name="modal" appear>
-                        <div class="p-modalList__overlay" @click="closeModal(i,j)" v-if="false">
-                          <div class="p-modalList__window">
-                            <img v-bind:src="require('../../static/images/news/' + images.img)" />
-                          </div>
+                      <div
+                        :id="'js-modalList__overlay--' + i + j"
+                        class="p-modalList__overlay"
+                        @click="closeModal(i,j)"
+                      >
+                        <div class="p-modalList__window">
+                          <img v-bind:src="require('../../static/images/news/' + images.img)" />
                         </div>
-                      </transition>
+                      </div>
                     </li>
                   </ul>
                 </div>
               </div>
             </li>
           </ul>
-          <!-- pagenation -->
+          <!-- ページネーションの呼び出し -->
           <PrevNext ref="prext" :page="page" :totalPage="totalPage" @change="onPageChange" />
         </div>
       </div>
@@ -67,32 +72,28 @@
 </template>
 
 <script>
-import PrevNext from "../components/PrevNext";
-import ImgModal from "../components/ImgModal";
-import NewsList from "../api/newsList.js";
+import PrevNext from "../components/PrevNext"; //ページネーション
+import NewsList from "../api/newsList.js"; //News記事のデータ
 export default {
   name: "Home",
   components: {
-    PrevNext,
-    ImgModal
+    PrevNext
   },
   data() {
     const list = NewsList.fetch();
-    const perPage = 3;
-    const maxImg = 8;
+    const perPage = 2;
+    const maxImg = 10;
     return {
-      list,
-      catActive: "1",
-      page: 1,
-      perPage,
-      maxImg,
-      totalPage: Math.ceil(list.length / perPage),
-      count: list.length,
-      modalActiveList: [],
-      message: ""
+      list, //表示する記事データ
+      catActive: "1", //カテゴリーを切り替え
+      page: 1, //現在のページ
+      perPage, //1ページあたりの記事数
+      maxImg, //1記事あたりの画像の最大数
+      totalPage: Math.ceil(list.length / perPage) //総ページ数
     };
   },
   computed: {
+    //現在のページに合わせてlistを切り取る
     filterList() {
       return this.list.slice(
         (this.page - 1) * this.perPage,
@@ -101,7 +102,8 @@ export default {
     }
   },
   methods: {
-    changeCat: function(num) {
+    //カテゴリーを切り替える
+    changeCat(num) {
       let changeList = [];
       if (num === "1") {
         this.changeList = NewsList.fetch();
@@ -118,29 +120,29 @@ export default {
           return value.category === "CAT3";
         });
       }
-      this.catActive = num;
-      this.page = 1;
-      this.list = this.changeList;
-      this.totalPage = Math.ceil(this.list.length / this.perPage);
+      this.catActive = num; //sidebar切り替え
+      this.page = 1; //現在のページを1に戻す
+      this.list = this.changeList; //表示記事を切り替え
+      this.totalPage = Math.ceil(this.list.length / this.perPage); //トータルページをカテゴリーに合わせて変更
       this.$refs.prext.catChange();
     },
+    //現在のページを切り替える
     onPageChange(page) {
       this.page = page;
     },
+    //モーダルを開く
     openModal(i, j) {
-      this.modalActiveList[i].splice(j, 1, true);
+      const targetModal = document.getElementById(
+        "js-modalList__overlay--" + i + j
+      );
+      targetModal.classList.add("u-modalFadeIn");
     },
+    //モーダルを閉じる
     closeModal(i, j) {
-      this.modalActiveList[i].splice(j, 1, false);
-    }
-  },
-  created() {
-    //modalActiveListを初期化
-    for (let i = 0; i < this.perPage; i++) {
-      this.modalActiveList[i] = [];
-      for (let j = 0; j < this.maxImg; j++) {
-        this.modalActiveList[i].splice(j, 1, false);
-      }
+      const targetModal = document.getElementById(
+        "js-modalList__overlay--" + i + j
+      );
+      targetModal.classList.remove("u-modalFadeIn");
     }
   }
 };
@@ -148,29 +150,6 @@ export default {
 
 <style lang="scss" scoped >
 @import "../assets/scss/app.scss";
-// オーバーレイのトランジション
-.modal-enter-active,
-.modal-leave-active {
-  transition: opacity 0.4s;
-  // オーバーレイに包含されているモーダルウィンドウのトランジション
-  .p-modalList__window {
-    transition: opacity 0.4s, transform 0.4s;
-  }
-}
-// ディレイを付けるとモーダルウィンドウが消えた後にオーバーレイが消える
-.modal-leave-active {
-  transition: opacity 0.6s ease 0.4s;
-}
-.modal-enter,
-.modal-leave-to {
-  opacity: 0;
-
-  .p-modalList__window {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-}
-
 .p-newsDetailInfo {
   > li {
     display: inline-block;
@@ -278,7 +257,7 @@ export default {
   }
 }
 .p-modalList__overlay {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -287,12 +266,13 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
 }
 .p-modalList__window {
   background: #fff;
   overflow: hidden;
   width: 95%;
+  max-width: 500px;
 }
 .p-modalList {
   flex-wrap: wrap;
@@ -313,4 +293,8 @@ export default {
     }
   }
 }
+.u-modalFadeIn {
+  display: flex;
+}
 </style>
+

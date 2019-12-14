@@ -1,13 +1,20 @@
 <template>
+  <!-- p-home -->
   <div class="p-home">
-    <div class="p-home__mv"></div>
+    <div class="p-home__mv">
+      <video id="js-video-pc" class="p-home__video" autoplay muted playsinline loop>
+        <source src="./../../static/video/video.mp4" type="video/mp4" />
+      </video>
+    </div>
     <div class="l-main__container">
+      <!-- p-homeTxt -->
       <section class="p-homeTxt l-main__inner u-mb-50-sp">
         <h1 class="u-fs-40-26 js-fade u-fadeUp-30 u-easeOut u-dr-1500">タイトルタイトルタイトルタイトル</h1>
         <p
           class="js-fade u-fadeUp-30 u-easeOut u-dr-1500"
         >テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
       </section>
+      <!-- p-page01 -->
       <section
         class="p-page01 u-mb-150-100 l-main__inner js-fade u-fadeUp-30 u-easeOut u-dr-1000 u-dl-500"
       >
@@ -38,6 +45,7 @@
           </li>
         </ul>
       </section>
+      <!-- p-page02 -->
       <section class="p-home__page02 u-mb-50-sp js-fade u-fadeUp-30 u-easeOut u-dr-1500">
         <div class="p-page02Img">
           <figure class="p-page02Img__img"></figure>
@@ -82,6 +90,7 @@
         </div>
         <router-link to="/page02" class="c-moreBtn p-newsBtn">more</router-link>
       </section>
+      <!-- p-news -->
       <section
         class="p-home__news l-main__inner u-mb-150-100 js-fade u-fadeUp-30 u-easeOut u-dr-1500"
       >
@@ -123,19 +132,20 @@
 </template>
 
 <script>
-import NewsList from "../api/newsList.js";
+import NewsList from "../api/newsList.js"; //Newsの記事データを読み込む
 export default {
   name: "Home",
   data: function() {
     return {
-      list: NewsList.fetch().slice(0, 5),
-      isTabActive: "1"
+      list: NewsList.fetch().slice(0, 5), //News記事をnewsList.jsから呼び出す。
+      isTabActive: "1" //Newsのカテゴリーを切り替えるための変数
     };
   },
   methods: {
+    //Newsのカテゴリーを切り替える isTavActiveが1なら全て表示
     changeNews: function(num) {
       this.isTabActive = num;
-      let changeList = [];
+      let changeList = []; //表示したいカテゴリーの記事を保存するためのリスト
       if (num === "1") {
         this.changeList = NewsList.fetch();
       } else if (num === "2") {
@@ -156,26 +166,38 @@ export default {
     }
   },
   mounted: function() {
+    //u-fadeInを持つクラスinView.jsで操作
     inView(".js-fade").on("enter", el => {
       $(el).addClass("u-fadeIn");
     });
-    // .on("exit", el => {
-    //   $(el).removeClass("u-fadeIn");
-    // });
   }
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/scss/app.scss";
+//p-home
 //p-home__mv
 .p-home__mv {
-  height: 60vw;
-  max-height: 700px;
-  background: url("../../static/images/home-mv.jpg") center center/cover
-    no-repeat;
+  overflow: hidden;
+  position: relative;
+  @include mq(o-sp) {
+    height: 60vw;
+    max-height: calc(100vh - 78px);
+  }
   @include mq(u-sp) {
-    height: 90vw;
+    height: 130vw;
+  }
+}
+.p-home__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  @media (max-width: 1540px) {
+    width: auto;
+    height: 100%;
   }
 }
 .p-homeTxt {
@@ -392,6 +414,7 @@ export default {
     top: -50px;
   }
 }
+
 //p-home__news
 .p-home__news {
   position: relative;

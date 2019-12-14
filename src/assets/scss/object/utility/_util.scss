@@ -200,7 +200,6 @@
     padding-top: 35px;
   }
 }
-
 .u-pr-50{padding-right: 50px;}
 .u-pb-50{padding-bottom: 50px;}
 .u-mb-10{margin-bottom: 10px;}
@@ -213,14 +212,13 @@
     margin-bottom: 100px;
   }
 }
-
 .u-mb-20{margin-bottom: 20px;}
 .u-mb-30{margin-bottom: 30px;}
 .u-mb-5-sp { @include mq(u-sp) { margin-bottom: 5px}}
 .u-mb-30-sp { @include mq(u-sp) { margin-bottom: 30px}}
 .u-mb-50-sp{ @include mq(u-sp) { margin-bottom: 50px}}
 
-//underbaer
+//underbar
 .u-underbar {
   padding-bottom: 5px;
   border-bottom: 1px solid rgba($colorLight, .7);

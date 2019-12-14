@@ -79,7 +79,7 @@ export default {
   methods: {
     slideMenu: function() {
       this.isMenuShow = !this.isMenuShow;
-      //スクロールを停止するため親メゾット
+      //SPメニューが開いたときにスクロールを停止するため親メゾット
       this.$emit("menuMethods", this.isMenuShow);
     }
   }
@@ -100,10 +100,10 @@ export default {
 .v-transSlide-leave-to {
   opacity: 0;
 }
-//pc
+//PC
 .l-headerLogo {
-  padding: 5px 0 0 0;
-  width: 150px;
+  padding: 20px 0 0 0;
+  width: 180px;
 }
 .l-header__inner {
   max-width: 1280px;
@@ -151,13 +151,13 @@ export default {
 .l-header__menu {
   justify-content: space-between;
 }
-//sp
+//SP
 .l-spHeader {
   position: relative;
 }
 .l-spHeader__logo {
-  padding-top: 5px;
-  width: 100px;
+  padding-top: 9px;
+  width: 120px;
 }
 .l-spHeader__top {
   position: relative;
@@ -168,14 +168,13 @@ export default {
   position: relative;
   cursor: pointer;
   font-weight: bold;
-  z-index: 9999;
+  z-index: 999;
   height: 100%;
   line-height: 50px;
   color: $colorFont;
   transition: color 0.5s;
 }
 .l-slideMenu {
-  // display: none;
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -183,10 +182,6 @@ export default {
   background-color: rgba($colorLight, 0.9);
   color: #fff;
   z-index: 100;
-}
-.l-slideMenu__logo {
-  width: 100px;
-  line-height: 50px;
 }
 .l-slideMenu__list {
   padding-top: 80px;

@@ -33,7 +33,6 @@ export default {
       required: true
     }
   },
-  computed: {},
   methods: {
     catChange() {
       scrollTo(0, 0);
@@ -77,15 +76,23 @@ export default {
 .p-pagination {
   text-align: center;
 }
+
 .p-pagination li {
   cursor: pointer;
   display: inline-block;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
   font-weight: bold;
   background-color: $colorLight;
   color: #fff;
+  @include mq(o-sp) {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
+  @include mq(u-sp) {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+  }
   &:not(:last-child) {
     margin-right: 10px;
   }

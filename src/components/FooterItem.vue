@@ -5,7 +5,7 @@
         <li class="p-accessConent__item">
           <router-link to="/access">
             <dl>
-              <dt>会社への</dt>
+              <dt>テキスト</dt>
               <dd class="u-fs-24-18">交通アクセス</dd>
             </dl>
           </router-link>
@@ -36,7 +36,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to=""  limit CSS to=""  this component only -->
 <style scoped lang="scss">
 @import "../assets/scss/app.scss";
 .l-footer {
