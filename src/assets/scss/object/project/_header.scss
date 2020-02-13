@@ -1,0 +1,11 @@
+.p-slideMenu__list {
+  > li:not(:last-child) {
+    margin-bottom: 25px;
+  }
+  > li a {
+    padding-bottom: 10px;
+    font-weight: bold;
+    display: block;
+    border-bottom: 1px solid $colorDark;
+  }
+}

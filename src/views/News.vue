@@ -13,17 +13,8 @@
           <div class="p-newsCategoty">
             <h2 class="p-newsCategoty__ttl u-fs-18 u-mb-20">CATEGORY</h2>
             <ul class="p-newsCategoty__list u-mb-50-sp">
-              <li class="p-newsCategoty__listItem" v-bind:class="{'u-catActive': catActive == 1}">
-                <a v-on:click="changeCat('1')">ALL</a>
-              </li>
-              <li class="p-newsCategoty__listItem" v-bind:class="{'u-catActive': catActive == 2}">
-                <a v-on:click="changeCat('2')">CAT1</a>
-              </li>
-              <li class="p-newsCategoty__listItem" v-bind:class="{'u-catActive': catActive == 3}">
-                <a v-on:click="changeCat('3')">CAT2</a>
-              </li>
-              <li class="p-newsCategoty__listItem" v-bind:class="{'u-catActive': catActive == 4}">
-                <a v-on:click="changeCat('4')">CAT3</a>
+              <li class="p-newsCategoty__listItem" v-for="(item, index) in catList" :key="index" :class="{'u-catActive': catActive == item}">
+                <a v-on:click="changeCat(item)">{{item}}</a>
               </li>
             </ul>
           </div>
@@ -73,9 +64,9 @@
 
 <script>
 import PrevNext from "../components/PrevNext"; //ページネーション
-import NewsList from "../api/newsList.js"; //News記事のデータ
+import NewsList from "../../static/news/newsList.js"; //Newsの記事データを読み込む
 export default {
-  name: "Home",
+  name: "News",
   components: {
     PrevNext
   },
@@ -85,11 +76,12 @@ export default {
     const maxImg = 10;
     return {
       list, //表示する記事データ
-      catActive: "1", //カテゴリーを切り替え
       page: 1, //現在のページ
       perPage, //1ページあたりの記事数
       maxImg, //1記事あたりの画像の最大数
-      totalPage: Math.ceil(list.length / perPage) //総ページ数
+      totalPage: Math.ceil(list.length / perPage), //総ページ数
+      catList: ['ALL','CAT1','CAT2','CAT3'] ,//カテゴリー数
+      catActive: 'ALL', //表示カテゴリーの変更に伴ってクラスを変更する、初期値はALL
     };
   },
   computed: {
@@ -103,24 +95,16 @@ export default {
   },
   methods: {
     //カテゴリーを切り替える
-    changeCat(num) {
+    changeCat(name) {
       let changeList = [];
-      if (num === "1") {
+      if (name === 'ALL') {
         this.changeList = NewsList.fetch();
-      } else if (num === "2") {
-        this.changeList = NewsList.fetch().filter(function(value) {
-          return value.category === "CAT1";
-        });
-      } else if (num === "3") {
-        this.changeList = NewsList.fetch().filter(function(value) {
-          return value.category === "CAT2";
-        });
       } else {
         this.changeList = NewsList.fetch().filter(function(value) {
-          return value.category === "CAT3";
-        });
+          return value.category === name;
+        })
       }
-      this.catActive = num; //sidebar切り替え
+      this.catActive = name; //sidebar切り替え
       this.page = 1; //現在のページを1に戻す
       this.list = this.changeList; //表示記事を切り替え
       this.totalPage = Math.ceil(this.list.length / this.perPage); //トータルページをカテゴリーに合わせて変更
@@ -144,7 +128,7 @@ export default {
       );
       targetModal.classList.remove("u-modalFadeIn");
     }
-  }
+  },
 };
 </script>
 

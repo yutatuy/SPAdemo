@@ -45,14 +45,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.kv_leave {
-  opacity: 1;
-}
-.kv_leave-to {
-  opacity: 0;
-}
-.kv_leave-active {
-  transition: opacity 0.5s;
-}
-</style>

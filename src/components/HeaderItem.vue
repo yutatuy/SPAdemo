@@ -33,21 +33,9 @@
     <div class="l-spHeader u-hidden-pc">
       <transition name="v-transSlide">
         <div v-if="this.isMenuShow" class="l-spHeader__slideMenu l-slideMenu">
-          <ul class="l-slideMenu__list">
-            <li>
-              <router-link class="u-fs-14" to="/" @click.native="slideMenu">home</router-link>
-            </li>
-            <li>
-              <router-link class="u-fs-14" to="/page01" @click.native="slideMenu">page1</router-link>
-            </li>
-            <li>
-              <router-link class="u-fs-14" to="/page02" @click.native="slideMenu">page2</router-link>
-            </li>
-            <li>
-              <router-link class="u-fs-14" to="/news" @click.native="slideMenu">news</router-link>
-            </li>
-            <li>
-              <router-link class="u-fs-14" to="/access" @click.native="slideMenu">access</router-link>
+          <ul class="l-slideMenu__list p-slideMenu__list">
+            <li v-for="(item, index) in this.spMenuList" :key="index">
+              <router-link :to="item.target" class="u-fs-14" @click.native="slideMenu">{{item.label}}</router-link>
             </li>
           </ul>
         </div>
@@ -73,7 +61,14 @@ export default {
   name: "HeaderItem",
   data: function() {
     return {
-      isMenuShow: false
+      isMenuShow: false,
+      spMenuList: {
+        home: {target: '/', label: 'home'},
+        page01: {target: '/page01', label: 'page1'},
+        page02: {target: '/page02', label: 'page2'},
+        news: {target: '/news', label: 'news'},
+        access: {target: '/access', label: 'access'},
+      }
     };
   },
   methods: {
@@ -186,14 +181,5 @@ export default {
 .l-slideMenu__list {
   padding-top: 80px;
   text-transform: uppercase;
-  > li:not(:last-child) {
-    margin-bottom: 25px;
-  }
-  > li a {
-    padding-bottom: 10px;
-    font-weight: bold;
-    display: block;
-    border-bottom: 1px solid $colorDark;
-  }
 }
 </style>
